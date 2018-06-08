@@ -1,0 +1,23 @@
+sudo: required
+
+env:
+  matrix:
+    - GO_BUILD_VERSION: "latest"
+    - GO_BUILD_VERSION: "1.10.2"
+    - GO_BUILD_VERSION: "1.9"
+
+services:
+  - docker
+
+before_install:
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt-get update
+  - sudo apt-get -y install docker-ce
+
+script:
+  - docker build --build-arg GO_VERSION=$GO_BUILD_VERSION -t bastipaeltz/go-dev:$GO_BUILD_VERSION .
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u bastipaeltz --password-stdin
+  - docker push bastipaeltz/go-dev:$GO_BUILD_VERSION
