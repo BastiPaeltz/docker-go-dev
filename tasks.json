@@ -1,0 +1,32 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "options": {
+        "env": {
+            "APP_PATH": "${config:go-docker.appPath}"
+        }
+    },
+    "tasks": [
+        {
+            "label": "docker-compose restart debug container",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "type": "shell",
+            "command": "docker-compose -f ${config:go-docker.dockerComposePath} restart ${config:go-docker.appName}_debug",
+            "problemMatcher": []
+        },
+        {
+            "label": "docker-compose up",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "type": "shell",
+            "command": "docker-compose -f ${config:go-docker.dockerComposePath} up",
+            "problemMatcher": []
+        },
+    ]
+}

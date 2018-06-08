@@ -1,0 +1,10 @@
+{
+    "go-docker": {
+        // name of your app, must be the same as you specified in docker-compose.yml file
+        "appName": "my_go_app",
+        // where your go source files are
+        "appPath": "github.com/hashicorp/vault",
+        // where the docker-compose file is which will be run
+        "dockerComposePath": "${workspaceRoot}/docker-compose.yml",
+    }
+}
