@@ -1,9 +1,9 @@
 # You need to set APP_PATH when running this compose file:
 # e.g. APP_PATH=github.com/hashicorp/terraform docker-compose up
+# If you are using the provided VS Code, this will be set in the provided config files
 version: '3'
 services:
-  redis:
-    image: redis
+
   # change this key to the name of your app
   my_go_app:
     restart: always
@@ -15,6 +15,7 @@ services:
     ports:
       # define all app-specific exposed port mappings here
       - "8888:8080"
+
   # change this key to the name of your app and append "_debug"
   my_go_app_debug:
     restart: always
@@ -29,3 +30,7 @@ services:
       - "23456:23456"
       # define all app-specific exposed port mappings here
       - "8889:8080"
+
+  # add other external services like e.g. redis
+  # redis:
+  #   image: redis

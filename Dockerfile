@@ -1,4 +1,5 @@
-FROM golang:1.10.2
+ARG  GO_VERSION=latest
+FROM golang:${GO_VERSION}
 
 ENV GODEP_VERSION 0.4.1
 
